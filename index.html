@@ -258,18 +258,18 @@ section[id] { scroll-margin-top: 12px; }
 .section--schedule { background: var(--paper); }
 .section--schedule::after { content: "★"; position: absolute; right: 3vw; top: 45%; color: var(--mayo); font-size: clamp(70px, 12vw, 160px); transform: rotate(12deg); opacity: .8; }
 .section--schedule .section-heading { position: relative; z-index: 2; }
-.schedule-float { position: absolute; z-index: 1; width: clamp(112px, 12vw, 178px); pointer-events: none; will-change: transform; }
+.schedule-float { position: absolute; z-index: 1; width: 400px; pointer-events: none; will-change: transform; }
 .schedule-float img { display: block; width: 100%; height: auto; filter: drop-shadow(7px 10px 0 rgba(23,36,42,.1)); animation: schedule-space-bob 4.2s ease-in-out infinite; }
-.schedule-float--left { left: -220px; top: 31%; animation: schedule-drift-right 27s linear infinite -1.5s; }
-.schedule-float--right { right: -220px; bottom: 5%; animation: schedule-drift-left 31s linear infinite -2.5s; }
+.schedule-float--left { --schedule-drift-end: calc(100vw + 800px); left: -400px; top: 31%; animation: schedule-drift-right 18s linear infinite -1.5s; }
+.schedule-float--right { --schedule-drift-end: calc(-100vw - 800px); right: -400px; bottom: 5%; animation: schedule-drift-left 20s linear infinite -2.5s; }
 .schedule-float--right img { animation-delay: -2.1s; }
 @keyframes schedule-drift-right {
   from { transform: translateX(0) rotate(-7deg); }
-  to { transform: translateX(calc(100vw + 440px)) rotate(7deg); }
+  to { transform: translateX(var(--schedule-drift-end)) rotate(7deg); }
 }
 @keyframes schedule-drift-left {
   from { transform: translateX(0) rotate(8deg); }
-  to { transform: translateX(calc(-100vw - 440px)) rotate(-8deg); }
+  to { transform: translateX(var(--schedule-drift-end)) rotate(-8deg); }
 }
 @keyframes schedule-space-bob {
   0%, 100% { translate: 0 -10px; }
@@ -385,7 +385,9 @@ section[id] { scroll-margin-top: 12px; }
   .fact-list div { grid-template-columns: 72px 1fr; gap: 12px; }
   .route-note { grid-template-columns: 1fr; gap: 9px; }
   .schedule-card { padding: 24px 20px; box-shadow: 8px 8px 0 var(--red); }
-  .schedule-float { width: 92px; opacity: .72; }
+  .schedule-float { width: 200px; opacity: .72; }
+  .schedule-float--left { --schedule-drift-end: calc(100vw + 400px); left: -200px; }
+  .schedule-float--right { --schedule-drift-end: calc(-100vw - 400px); right: -200px; }
   .schedule-card__top { display: grid; }
   .timeline li { grid-template-columns: 32px 62px 1fr; gap: 10px; }
   .timeline__number { width: 31px; height: 31px; font-size: 11px; }
