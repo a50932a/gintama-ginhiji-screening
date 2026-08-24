@@ -1,44 +1,55 @@
 const navItems = [
   ["info", "01", "包場資訊"],
-  ["location", "02", "地點指南"],
-  ["schedule", "03", "當天流程"],
-  ["seats", "04", "座位表"],
-  ["contact", "05", "聯絡資訊"],
+  ["notice", "02", "注意事項"],
+  ["location", "03", "地點指南"],
+  ["schedule", "04", "當天流程"],
+  ["seats", "05", "座位表"],
+  ["contact", "06", "聯絡資訊"],
 ] as const;
 
 const eventFacts = [
-  ["DATE", "2026.11.08 SUN"],
+  ["DATE", "2026.09.12 SUN"],
   ["TIME", "13:20 開放入場／14:00 正式開始"],
-  ["PLACE", "臺北市・銀幕影廳（場地待公開）"],
-  ["CHECK", "電子票券／報名姓名"],
+  [
+    "PLACE",
+    "桃園市・統領威秀影廳（影廳待公開）\n桃園市桃園區中正路61號9樓／統領廣場 TONLIN PLAZA",
+  ],
+  ["CHECK", "以報名資訊現場兌換實體票券"],
+  ["SPECIAL", " 來場將獲得神秘特典！"],
 ] as const;
 
 const timeline = [
-  ["13:20", "開放入場", "出示電子票券，領取特典"],
+  ["13:20", "開放入場", "報到領取票券與來場特典"],
   ["13:50", "入座提醒", "尋找座位，請將手機靜音"],
   ["14:00", "正式開始", "主辦簡介與映前須知"],
-  ["16:10", "映後時間", "大合照／特典交流"],
+  ["16:10", "映後時間", "大合照／抽獎大會"],
 ] as const;
 
 function PlaceholderTag() {
   return <span className="placeholder-tag">示意資料／待更新</span>;
 }
 
-function FoodSticker({ kind }: { kind: "mayo" | "uji" | "special" }) {
-  if (kind === "mayo") {
-    return (
-      <span className="food-sticker mayo-sticker" aria-hidden="true">
-        <i />
-        <b>MAYO</b>
-      </span>
-    );
-  }
+function FoodArt({
+  kind,
+  className = "",
+}: {
+  kind: "mayo" | "uji" | "special";
+  className?: string;
+}) {
+  const images = {
+    mayo: ["mayo-bottle-web.webp", "美乃滋瓶"],
+    uji: ["uji-bowl-web.webp", "宇治銀時丼"],
+    special: ["special-bowl-web.webp", "土方特製丼"],
+  } as const;
+  const [src, label] = images[kind];
 
   return (
-    <span className={`food-sticker bowl-sticker bowl-sticker--${kind}`} aria-hidden="true">
-      <i />
-      <b>{kind === "uji" ? "宇治銀時" : "土方特製"}</b>
-    </span>
+    <img
+      className={`food-art food-art--${kind} ${className}`.trim()}
+      src={src}
+      alt=""
+      aria-label={label}
+    />
   );
 }
 
@@ -46,20 +57,28 @@ export default function Home() {
   return (
     <main>
       <section className="hero" id="top">
-        <FoodSticker kind="mayo" />
-        <FoodSticker kind="uji" />
+        <FoodArt kind="mayo" />
+        <FoodArt kind="uji" />
 
-        <p className="eyebrow">銀 × 土 ・ PRIVATE SCREENING</p>
-        <div className="title-wrap">
-          <span className="title-kana">しろくろの日</span>
-          <h1>銀土包場</h1>
-          <p className="title-note">事前說明所</p>
+        <p className="eyebrow">銀時 × 土方 ・ PRIVATE SCREENING</p>
+        <div className="title-stage">
+          <img
+            className="hero-character hero-character--left"
+            src="hero-character-left.webp"
+            alt="銀時 Q 版小人物"
+          />
+          <div className="title-wrap">
+            <span className="title-kana">腐れ縁</span>
+            <h1>銀土包場</h1>
+            <p className="title-note">事前說明所</p>
+          </div>
+          <img
+            className="hero-character hero-character--right"
+            src="hero-character-right.webp"
+            alt="土方 Q 版小人物"
+          />
         </div>
-        <p className="hero__copy">
-          把喜歡的人、喜歡的故事，放進同一個銀幕裡。
-          <br />
-          關於這天的一切，都在這裡集合。
-        </p>
+        <p className="hero__copy">與其一次拿完不如一生細水長流</p>
 
         <nav className="hero-nav" aria-label="頁面區段導覽">
           {navItems.map(([id, number, label]) => (
@@ -93,12 +112,10 @@ export default function Home() {
         <div className="info-layout">
           <article className="intro-card">
             <PlaceholderTag />
-            <p className="intro-card__lead">
-              這是一場為「銀土」同好們準備的限定包場。
-            </p>
+            <p className="intro-card__lead">這是一場為「銀土」同好們準備的限定包場。</p>
             <p>
-              期待大家帶著喜歡兩人的心情來到現場，一起觀賞電影、交換特典，
-              也紀念這個難得的相聚日。正式活動內容與觀影須知將於資料確定後更新。
+              期待大家帶著喜歡兩人的心情來到現場，一起觀賞電影、交換特典。
+              將播放《真選組動亂篇》＆《荊棘惡童篇》。
             </p>
             <div className="mini-note">
               <span>PLEASE NOTE</span>
@@ -115,12 +132,43 @@ export default function Home() {
             ))}
           </dl>
         </div>
-        <FoodSticker kind="special" />
+
+        <article className="bonus-info">
+          <div className="bonus-info__copy">
+            <span className="handwritten">WELCOME GIFT / NOVELTY</span>
+            <h3>來場特典</h3>
+            <p>來場特典資訊請以右側圖卡公告內容為準。</p>
+          </div>
+          <figure className="bonus-image">
+            <img src="bonus-gift.jpg" alt="銀土 CP 向電影包場來場特典圖卡" />
+          </figure>
+        </article>
+        <FoodArt kind="special" />
+      </section>
+
+      <section className="section section--notice-cards" id="notice">
+        <header className="section-heading">
+          <p>02 / NOTICE</p>
+          <h2>注意事項</h2>
+          <span>出發前，請先確認活動的重要提醒。</span>
+        </header>
+        <figure className="notice-image-card">
+          <div className="notice-image-placeholder" role="img" aria-label="注意事項圖卡預留位置">
+            <span>IMAGE / NOTICE CARD</span>
+            <b>注意事項圖卡</b>
+            <p>正式圖片將放置於此</p>
+          </div>
+          <figcaption>
+            <PlaceholderTag />
+            <span>正式版將以主辦提供的注意事項圖片替換。</span>
+          </figcaption>
+        </figure>
+        <FoodArt kind="uji" />
       </section>
 
       <section className="section section--blue" id="location">
         <header className="section-heading section-heading--light">
-          <p>02 / LOCATION</p>
+          <p>03 / LOCATION</p>
           <h2>地點指南</h2>
           <span>別擔心，沿著指引就能會合。</span>
         </header>
@@ -155,16 +203,22 @@ export default function Home() {
 
         <div className="route-note">
           <span>ROUTE MEMO</span>
-          <p>捷運待公開站　2 號出口→直行約 3 分鐘→右轉看見藍色招牌。</p>
+          <p>桃園火車站往遠百正門方向出站→往前走一段路→左手邊即是統領百貨</p>
         </div>
       </section>
 
       <section className="section section--schedule" id="schedule">
         <header className="section-heading">
-          <p>03 / SCHEDULE</p>
+          <p>04 / SCHEDULE</p>
           <h2>當天流程</h2>
           <span>準時報到，從容地享受每一刻。</span>
         </header>
+        <div className="schedule-float schedule-float--left" aria-hidden="true">
+          <img src="schedule-float-left.webp" alt="" />
+        </div>
+        <div className="schedule-float schedule-float--right" aria-hidden="true">
+          <img src="schedule-float-right.webp" alt="" />
+        </div>
 
         <div className="schedule-card">
           <div className="schedule-card__top">
@@ -192,7 +246,7 @@ export default function Home() {
 
       <section className="section section--dark" id="seats">
         <header className="section-heading section-heading--light">
-          <p>04 / SEAT MAP</p>
+          <p>05 / SEAT MAP</p>
           <h2>座位表</h2>
           <span>找到自己的位置，一起面向銀幕。</span>
         </header>
@@ -212,6 +266,7 @@ export default function Home() {
           </div>
 
           <div className="seat-copy">
+            <img className="seat-decoration" src="seat-decoration.webp" alt="銀時與土方愛心吊飾插圖" />
             <PlaceholderTag />
             <h3>完整座位表將於此公開</h3>
             <p>
@@ -228,7 +283,7 @@ export default function Home() {
 
       <section className="section section--contact" id="contact">
         <header className="section-heading">
-          <p>05 / CONTACT</p>
+          <p>06 / CONTACT</p>
           <h2>聯絡資訊</h2>
           <span>有任何疑問，歡迎在活動前和我們說。</span>
         </header>
@@ -237,25 +292,35 @@ export default function Home() {
           <div className="contact-ticket__main">
             <PlaceholderTag />
             <p className="contact-ticket__label">ORGANIZER / 主辦聯絡人</p>
-            <h3>銀土包場籌備組</h3>
+            <h3>包場籌備組-草凡</h3>
+            <img className="contact-decoration" src="contact-decoration.webp" alt="銀時與土方金色圓形吊飾插圖" />
             <div className="contact-links">
-              <a href="mailto:event@example.com"><span>MAIL</span>event@example.com</a>
-              <a href="tel:+886900000000"><span>TEL</span>0900–000–000</a>
+              <a href="mailto:grassrabbit1214@gmail.com">
+                <span>MAIL</span>
+                grassrabbit1214@gmail.com
+              </a>
+              <div className="social-media">
+                <span>SOCIAL / 社群媒體</span>
+                <div>
+                  <a href="https://www.threads.com/@kusabon1214" target="_blank" rel="noreferrer">Threads ↗</a>
+                  <a href="https://www.plurk.com/grassrabbit_1214" target="_blank" rel="noreferrer">噗浪 ↗</a>
+                </div>
+              </div>
             </div>
-            <p className="reply-note">回覆時間：週一至週五 19:00–22:00（示意）</p>
           </div>
           <div className="contact-ticket__stub" aria-hidden="true">
-            <span>GIN × HIJI</span>
-            <b>1108</b>
+            <span>GINTOKI × HIJIKATA</span>
+            <b>1005</b>
             <small>ADMIT ONE</small>
           </div>
         </div>
       </section>
 
       <footer className="footer">
-        <FoodSticker kind="mayo" />
+        <FoodArt kind="mayo" />
         <p className="footer__mark">銀土包場 <span>/</span> 2026</p>
         <p>本頁為非官方粉絲自發企劃活動之說明頁面。</p>
+        <p>網頁製作/阿蝶 插圖繪製：目目</p>
         <a href="#top">BACK TO TOP ↑</a>
       </footer>
 
