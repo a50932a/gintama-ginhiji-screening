@@ -14,7 +14,6 @@ const assets = [
   "seat-decoration.webp",
   "contact-decoration.webp",
   "bonus-gift.jpg",
-  "credits-list.png",
 ];
 
 let standalone = html.replace(

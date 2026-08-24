@@ -49,6 +49,8 @@ test("keeps the published event details and links", async () => {
   assert.match(html, /來場特典/);
   assert.match(html, /包場籌備組-草凡/);
   assert.match(html, /grassrabbit1214@gmail\.com/);
+  assert.match(html, /href="credits-list\.png"/);
+  assert.match(html, /src="credits-list\.png"/);
   assert.match(html, /threads\.com\/@kusabon1214/);
   assert.match(html, /plurk\.com\/grassrabbit_1214/);
   assert.match(html, />1005</);
