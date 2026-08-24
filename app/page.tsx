@@ -4,7 +4,8 @@ const navItems = [
   ["location", "03", "地點指南"],
   ["schedule", "04", "當天流程"],
   ["seats", "05", "座位表"],
-  ["contact", "06", "聯絡資訊"],
+  ["credits", "06", "感謝 & 主辦"],
+  ["contact", "07", "聯絡資訊"],
 ] as const;
 
 const eventFacts = [
@@ -281,9 +282,27 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section section--credits" id="credits">
+        <header className="section-heading">
+          <p>06 / THANKS &amp; ORGANIZERS</p>
+          <h2>感謝名單 &amp; 主辦名單</h2>
+          <span>謝謝每一位讓這場相聚成真的人。</span>
+        </header>
+
+        <figure className="credits-card">
+          <a href="credits-list.png" target="_blank" rel="noreferrer">
+            <img
+              src="credits-list.png"
+              alt="銀土 CP 向包場特典感謝名單與主辦群名單"
+            />
+          </a>
+          <figcaption>點擊圖片可開啟原始尺寸查看完整名單。</figcaption>
+        </figure>
+      </section>
+
       <section className="section section--contact" id="contact">
         <header className="section-heading">
-          <p>06 / CONTACT</p>
+          <p>07 / CONTACT</p>
           <h2>聯絡資訊</h2>
           <span>有任何疑問，歡迎在活動前和我們說。</span>
         </header>

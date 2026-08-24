@@ -35,6 +35,7 @@ test("server-renders the complete event information site", async () => {
   assert.match(html, />地點指南</);
   assert.match(html, />當天流程</);
   assert.match(html, />座位表</);
+  assert.match(html, />感謝名單 &amp; 主辦名單</);
   assert.match(html, />聯絡資訊</);
 });
 
@@ -67,6 +68,7 @@ test("renders all published illustration assets", async () => {
     "seat-decoration.webp",
     "contact-decoration.webp",
     "bonus-gift.jpg",
+    "credits-list.png",
   ];
 
   for (const asset of assets) {

@@ -123,7 +123,7 @@ section[id] { scroll-margin-top: 12px; }
 .hero-nav {
   width: min(920px, 100%);
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   border-block: 1px solid rgba(23, 36, 42, .55);
 }
 .hero-nav a {
@@ -297,6 +297,15 @@ section[id] { scroll-margin-top: 12px; }
 .disabled-link { display: inline-flex; align-items: center; gap: 18px; padding: 12px 18px; border: 1px solid rgba(255,255,255,.45); color: rgba(255,255,255,.68); font-size: 14px; cursor: not-allowed; }
 .disabled-link > span { padding-right: 18px; border-right: 1px solid rgba(255,255,255,.25); color: var(--blue); font: 700 12px/1 "Courier New", monospace; letter-spacing: .12em; }
 
+.section--credits { background: var(--blue-soft); }
+.section--credits::before { content: "THANK YOU"; position: absolute; right: -1vw; bottom: 4%; color: rgba(23,36,42,.045); font: 900 clamp(90px, 18vw, 250px)/.8 Arial, sans-serif; white-space: nowrap; }
+.credits-card { position: relative; z-index: 1; max-width: 760px; margin: auto; padding: clamp(12px, 2vw, 22px); border: 2px solid var(--ink); background: var(--white); box-shadow: 14px 14px 0 var(--red); transform: rotate(-.25deg); }
+.credits-card a { display: block; overflow: hidden; border: 1px solid rgba(23,36,42,.28); background: white; }
+.credits-card img { display: block; width: 100%; height: auto; transition: transform 240ms ease; }
+.credits-card a:hover img, .credits-card a:focus-visible img { transform: scale(1.012); }
+.credits-card a:focus-visible { outline: 3px solid var(--mayo); outline-offset: 4px; }
+.credits-card figcaption { padding: 16px 4px 1px; color: rgba(23,36,42,.72); font-size: 13px; line-height: 1.7; text-align: center; letter-spacing: .05em; }
+
 .section--contact { background: var(--white); }
 .section--contact::after { content: ""; position: absolute; width: 360px; height: 360px; left: -150px; bottom: -160px; border: 60px solid var(--blue-soft); border-radius: 50%; opacity: .65; }
 .contact-ticket { position: relative; z-index: 1; max-width: 960px; margin: auto; display: grid; grid-template-columns: 1fr 210px; border: 2px solid var(--ink); background: var(--paper); box-shadow: 12px 12px 0 var(--blue); }
@@ -364,9 +373,9 @@ section[id] { scroll-margin-top: 12px; }
   .title-kana { right: 6%; top: -27px; font-size: 12px; }
   .title-note { font-size: 12px; letter-spacing: .34em; }
   .hero__copy { margin: 28px 12px; font-size: 15px; }
-  .hero-nav { grid-template-columns: repeat(3,1fr); }
-  .hero-nav a:nth-child(4), .hero-nav a:nth-child(5), .hero-nav a:nth-child(6) { border-top: 1px solid rgba(23,36,42,.28); }
-  .hero-nav a:nth-child(4) { border-left: 0; }
+  .hero-nav { grid-template-columns: repeat(2,1fr); }
+  .hero-nav a:nth-child(odd) { border-left: 0; }
+  .hero-nav a:nth-child(n+3) { border-top: 1px solid rgba(23,36,42,.28); }
   .hero > .food-art { opacity: .5; width: 104px; }
   .hero > .food-art--mayo { top: 5%; left: -8px; width: 78px; }
   .hero > .food-art--uji { right: -10px; bottom: 3%; }
@@ -375,6 +384,9 @@ section[id] { scroll-margin-top: 12px; }
   .section { padding: 78px 20px; }
   .section-heading { margin-bottom: 38px; }
   .section-heading h2 { font-size: 40px; }
+  .section--credits .section-heading h2 { font-size: 32px; line-height: 1.25; }
+  .credits-card { padding: 8px; box-shadow: 8px 8px 0 var(--red); }
+  .credits-card figcaption { padding-inline: 8px; font-size: 12px; }
   .intro-card { box-shadow: 7px 7px 0 var(--blue-soft); }
   .bonus-info { padding: 10px; box-shadow: 8px 8px 0 var(--mayo); }
   .bonus-info__copy { padding: 24px 16px 10px; }

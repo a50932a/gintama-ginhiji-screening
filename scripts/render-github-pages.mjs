@@ -14,6 +14,7 @@ const assets = [
   "seat-decoration.webp",
   "contact-decoration.webp",
   "bonus-gift.jpg",
+  "credits-list.png",
 ];
 
 let standalone = html.replace(
@@ -23,7 +24,11 @@ let standalone = html.replace(
 
 for (const asset of assets) {
   const bytes = await readFile(new URL(`../public/${asset}`, import.meta.url));
-  const mimeType = asset.endsWith(".jpg") ? "image/jpeg" : "image/webp";
+  const mimeType = asset.endsWith(".jpg")
+    ? "image/jpeg"
+    : asset.endsWith(".png")
+      ? "image/png"
+      : "image/webp";
   standalone = standalone.replaceAll(asset, `data:${mimeType};base64,${bytes.toString("base64")}`);
 }
 

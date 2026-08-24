@@ -28,7 +28,7 @@ const html = `<!doctype html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#7cc9e5">
     <title>銀土包場｜事前說明所</title>
-    <meta name="description" content="銀魂銀土 CP 向包場事前說明：包場資訊、注意事項、地點指南、當天流程、座位表與聯絡方式。">
+    <meta name="description" content="銀魂銀土 CP 向包場事前說明：包場資訊、注意事項、地點指南、當天流程、座位表、感謝與主辦名單、聯絡方式。">
     <meta property="og:title" content="銀土包場｜事前說明所">
     <meta property="og:description" content="銀魂銀土 CP 向包場事前說明。">
     <meta property="og:type" content="website">
@@ -57,6 +57,7 @@ await Promise.all([
   copyFile(new URL("../public/seat-decoration.webp", import.meta.url), new URL("seat-decoration.webp", outputDirectory)),
   copyFile(new URL("../public/contact-decoration.webp", import.meta.url), new URL("contact-decoration.webp", outputDirectory)),
   copyFile(new URL("../public/bonus-gift.jpg", import.meta.url), new URL("bonus-gift.jpg", outputDirectory)),
+  copyFile(new URL("../public/credits-list.png", import.meta.url), new URL("credits-list.png", outputDirectory)),
 ]);
 await writeFile(new URL("_headers", outputDirectory), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n");
 await rm(compiledPage, { force: true });
