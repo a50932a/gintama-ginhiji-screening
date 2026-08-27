@@ -233,7 +233,8 @@ section[id] { scroll-margin-top: 12px; }
 .zoom-image-link img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 220ms ease; }
 .zoom-image-link:hover img, .zoom-image-link:focus-visible img { transform: scale(1.012); }
 .zoom-image-link:focus-visible { outline: 3px solid var(--mayo); outline-offset: 4px; }
-.notice-image-link { height: clamp(300px, 52vw, 560px); border: 2px solid rgba(23,36,42,.42); }
+.notice-image-link { border: 1px solid rgba(23,36,42,.28); }
+.notice-image-link img { height: auto; }
 .notice-image-card figcaption { padding: 18px 6px 2px; display: flex; justify-content: space-between; align-items: center; gap: 18px; font-size: 13px; }
 .section--notice-cards > .food-art--uji { position: absolute; right: 2vw; bottom: 1%; width: clamp(105px, 13vw, 185px); transform: rotate(8deg); }
 
@@ -415,7 +416,6 @@ section[id] { scroll-margin-top: 12px; }
   .section--info > .food-art--special, .section--notice-cards > .food-art--uji { width: 105px; right: -25px; bottom: -5px; opacity: .55; }
   .notice-image-card { padding: 10px; box-shadow: 8px 8px 0 var(--blue); }
   .notice-image-placeholder { min-height: 320px; padding: 20px; }
-  .notice-image-link { height: 320px; }
   .notice-image-card figcaption { align-items: flex-start; flex-direction: column; }
   .fact-list div { grid-template-columns: 72px 1fr; gap: 12px; }
   .route-note { grid-template-columns: 1fr; gap: 9px; }
